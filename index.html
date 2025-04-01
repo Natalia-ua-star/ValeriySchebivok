@@ -739,25 +739,37 @@
 
 
 
+
 <script>
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+  document.addEventListener('DOMContentLoaded', function () {
+    const target = document.querySelector('#part2');
+    const button = document.getElementById('joinButton');
+    const observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting === true) {
+        button.style.display = 'block';
+        button.classList.add('show');
+      } else {
+        button.classList.remove('show');
+        button.style.display = 'none';
       }
-    });
-  }, {
-    threshold: 0.2
+    }, { threshold: [0.5] });
+
+    if (target) {
+      observer.observe(target);
+    }
   });
-
-
-  document.querySelectorAll(".block1, .block2, .block4").forEach(block => {
-    observer.observe(block);
-  });
-
 </script>
 
+<div style="text-align: center; margin-top: 60px; margin-bottom: 40px;">
+  <p style="font-weight: bold;">Слідкуй за Валерією в соцмережах:</p>
+  <p>
+    <a href="https://t.me/schebivok" target="_blank">Telegram</a> |
+    <a href="https://www.instagram.com/valeriya_schebivok?igsh=bXd1YmR1ZjFyMGFv&utm_source=qr" target="_blank">Instagram</a> |
+    <a href="https://www.tiktok.com/@_schebivok13?_t=8pT4R9SrzxF&_r=1" target="_blank">TikTok</a>
+  </p>
+</div>
 </body>
+
+
+
 </html>
